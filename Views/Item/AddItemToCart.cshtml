@@ -1,0 +1,27 @@
+﻿@model Estorenew.Models.Items
+
+<h2>New Item in Cart</h2>
+
+@using (Html.BeginForm("SaveInCart", "Item"))
+{
+    @Html.ValidationSummary(true, "Please fix the following error");
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Price)
+        @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Price)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ItemInStock)
+        @Html.TextBoxFor(m => m.ItemInStock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ItemInStock)
+    </div>
+
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken();
+    <button type="submit" class="btn btn-primary">Save</button>
+}

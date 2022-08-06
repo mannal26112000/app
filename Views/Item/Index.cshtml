@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Estorenew.Models.Items>
+
+<h2>Items</h2>
+
+@if (!Model.Any())
+{
+    <p>We don't have any Items yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Items</th>
+                <th>Price</th>
+                <th>Add into Cart</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@Html.ActionLink("Add to cart", "AddItemToCart", "Item", new { id = item.Id }, null)</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    @Html.ActionLink("View Cart", "ViewCart", "Item", null, new { @class = "btn btn-primary" })
+}

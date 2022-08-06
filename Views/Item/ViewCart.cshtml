@@ -1,0 +1,33 @@
+﻿@*@model IEnumerable<Estorenew.Models.Items>*@
+@*@model IList<Estorenew.Models.Items>*@
+@model IList<Estorenew.Models.CartItem>
+@*@model IList<string>*@
+
+<h2>Items In Cart</h2>
+
+@if (!Model.Any())
+{
+    <p>You dont have anything in Cart</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Items</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Item.Name</td>
+                    <td>@item.Item.Price</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    @Html.ActionLink("Order", "Order", "Item", null, new { @class = "btn btn-primary" })
+}
